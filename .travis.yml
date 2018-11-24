@@ -1,2 +1,4 @@
 language : java
 sudo: enabled
+before_install:
+  - chmod +x mvnw
