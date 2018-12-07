@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tb-boot-deployment
+spec:
+  selector:
+    matchLabels:
+      app: tb-boot
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: jee
+    spec:
+      containers:
+      - name: tb-boot
+        image: frix0docker/tp_quality_2
+        ports:
+          - containerPort: 9999
