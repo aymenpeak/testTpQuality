@@ -1,0 +1,44 @@
+#version: '3.2'
+#
+#services:
+#  web:
+#    image: mysql:latest
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_DATABASE=test_db_2
+#      - MYSQL_USER=aymen
+#      - MYSQL_PASSWORD=secret
+#  tb-boot:
+#    build: .
+#    depends_on:
+#      - mysql-server
+#    ports:
+#      - 9999:9999
+#    environment:
+#      - DATABASE_HOST=mysql-server
+#      - DATABASE_USER=aymen
+#      - DATABASE_PASSWORD=secret
+#      - DATABASE_NAME=test_db_2
+#      - DATABASE_PORT=3306
+
+version: "3.2"
+services:
+  database:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: aymen
+      MYSQL_PASSWORD: root
+
+    expose:
+      - 3306
+    ports:
+      - 127.0.0.1:3306:3306
+  web:
+    build: .
+    ports:
+      - 127.0.0.1:9999:9999
+    depends_on:
+      - database
