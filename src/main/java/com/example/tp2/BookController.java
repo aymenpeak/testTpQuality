@@ -19,7 +19,7 @@ public class BookController {
 
     @PostMapping("/book/save")
     public String save(Book book) {
-        if(!this._bookRepository.findByTitle(book.getTitle()).isEmpty()){
+        if(this._bookRepository.findByTitle(book.getTitle()) != null){
             return "book existant !";
         }else{
             this._bookRepository.save(book);
@@ -33,9 +33,9 @@ public class BookController {
 
     @PostMapping("/book/find")
     public Book getByTitle(String title) {
-        Iterable<Book> l = this._bookRepository.findByTitle(title);
-        if(((List<Book>) l).size()> 0){
-            return  ((List<Book>) l).get(0);
+        Book l = this._bookRepository.findByTitle(title);
+        if(l != null){
+            return  l;
         }
         return null;
     }

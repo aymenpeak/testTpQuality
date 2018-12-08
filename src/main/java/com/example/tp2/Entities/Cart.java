@@ -1,6 +1,7 @@
 package com.example.tp2.Entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,14 +12,17 @@ public class Cart {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @OneToMany(mappedBy="cart")
-    private Set<Book> books;
+    private List<Book> books;
 
+    public Cart() {
+        this.books = new ArrayList<Book>();
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 }

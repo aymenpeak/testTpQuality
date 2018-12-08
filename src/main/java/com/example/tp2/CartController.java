@@ -19,10 +19,11 @@ public class CartController {
 
     @PostMapping("/cart/addbook")
     public int addbook(Book book) {
-        if(!this._bookRepository.findByTitle(book.getTitle()).isEmpty()){
+        if(this._bookRepository.findByTitle(book.getTitle())!= null){
             Cart cc = new Cart();
             cc.getBooks().add(book);
             Cart t = _cartRepository.save(cc);
+            _bookRepository.save(book);
             return t.getBooks().size();
         }else{
             return 92929;
