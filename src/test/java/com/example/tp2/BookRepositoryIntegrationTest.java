@@ -16,7 +16,7 @@ public class BookRepositoryIntegrationTest {
     @Autowired
     private BookRepository bookRepository;
     @Test
-    public void whenfindByTitle_thenReturnBook() {
+    public void whenFindByTitle_thenReturnBook() {
         // given
         Book book = new Book("titre", "author", 12, 12);
         entityManager.persist(book);
